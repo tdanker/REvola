@@ -8,7 +8,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-DataFrame tool2_table(DoubleVector demand,
+DataFrame tool2_table_cpp(DoubleVector demand,
                       DoubleVector renewable_availability_factor,
                       double Renewable_capacity = 200, // GW
                       double Curtailment_threshold = 10, // GW
@@ -17,28 +17,23 @@ DataFrame tool2_table(DoubleVector demand,
                       double Efficiency_discharging	= 0.926,
                       double Storage_energy=1000){
 
-
-
-  DoubleVector renewable_availability(demand.size()); 	// renewable_availability_factor * Renewable_capacity
-  DoubleVector renewable_surplus(demand.size());	      // renewable_availability-renewable_generation  #!usues value from next line!
-  DoubleVector renewable_generation(demand.size());	    // min(renewable_availability, demand)
-  DoubleVector residual_demand(demand.size());	        // demand-renewable_generation
-  DoubleVector curtailment(demand.size());	            // -min(-renewable_surplus+Curtailment_threshold, 0)
-  DoubleVector storage_loading(demand.size());          // renewable_surplus-curtailment
-  DoubleVector storage_discharging(demand.size());	    // min(residual_demand, storage_level[i-1]*Efficiency_discharging)
-  DoubleVector storage_energy_level(demand.size());     // storage_energy_level[i-1]+storage_loading*Efficiency_loading-storage_discharging*Effiency_discharging
-  DoubleVector conventional_generation(demand.size());	// max(residual_demand-storage_discharge, 0)
-  DoubleVector residual_demand_RLDC(demand.size());     // demand-renewable_availability
+  DoubleVector renewable_availability(demand.size());
+  DoubleVector renewable_surplus(demand.size());
+  DoubleVector renewable_generation(demand.size());
+  DoubleVector residual_demand(demand.size());
+  DoubleVector curtailment(demand.size());
+  DoubleVector storage_loading(demand.size());
+  DoubleVector storage_discharging(demand.size());
+  DoubleVector storage_energy_level(demand.size());
+  DoubleVector conventional_generation(demand.size());
+  DoubleVector residual_demand_RLDC(demand.size());
 
   storage_energy_level[0]=storage_energy_level_startvalue;
-
   for( int i = 0; i < demand.size(); i++) {
     renewable_availability[i] = renewable_availability_factor[i] * Renewable_capacity;
     renewable_generation[i]   = std::min(renewable_availability[i], demand[i]);
     renewable_surplus[i]      = renewable_availability[i]-renewable_generation[i];
     residual_demand[i]        = demand[i]-renewable_generation[i];
-     //curtailment[i]           =  - std::min( - renewable_surplus[i] + Curtailment_threshold, 0.0);
-    //storage_loading[i]        = renewable_surplus[i]-curtailment[i];
     if(i>0){
       storage_loading[i]        = std::max(std::min(renewable_surplus[i],(Storage_energy-storage_energy_level[i-1])/Efficiency_loading),0.0);
       curtailment[i]            = renewable_surplus[i]-storage_loading[i];

@@ -1,6 +1,6 @@
 context("test_tool1")
 test_that("we reproduce the original table at 1e-6 tolerance", {
-  reproduced <- tool1_table(demand$'2014', availability$`2014`)
+  reproduced <- tool1_table_cpp(demand$'2014', availability$`2014`)
   reproduced$hour<-paste0("h", 1:nrow(reproduced))
   reproduced <- reproduced[,c(13,1:12)]
   reproduced[1,10]<-NA
@@ -11,7 +11,7 @@ test_that("we reproduce the original table at 1e-6 tolerance", {
 
 context("test_tool2")
 test_that("we reproduce the original table at 1e-14 tolerance", {
-  reproduced <- tool2_table(demand$'2014', availability$`2014`)
+  reproduced <- tool2_table_cpp(demand$'2014', availability$`2014`)
   reproduced$hour<-paste0("h", 1:nrow(reproduced))
   reproduced <- reproduced[,c(13,1:12)]
   reproduced[1,10]<-NA

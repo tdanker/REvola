@@ -5,9 +5,9 @@
 
 using namespace Rcpp;
 
-// tool1_table
-DataFrame tool1_table(DoubleVector demand, DoubleVector renewable_availability_factor, double Renewable_capacity, double Curtailment_threshold, double storage_energy_level_startvalue, double Efficiency_loading, double Efficiency_discharging);
-RcppExport SEXP _REvola_tool1_table(SEXP demandSEXP, SEXP renewable_availability_factorSEXP, SEXP Renewable_capacitySEXP, SEXP Curtailment_thresholdSEXP, SEXP storage_energy_level_startvalueSEXP, SEXP Efficiency_loadingSEXP, SEXP Efficiency_dischargingSEXP) {
+// tool1_table_cpp
+DataFrame tool1_table_cpp(DoubleVector demand, DoubleVector renewable_availability_factor, double Renewable_capacity, double Curtailment_threshold, double storage_energy_level_startvalue, double Efficiency_loading, double Efficiency_discharging);
+RcppExport SEXP _REvola_tool1_table_cpp(SEXP demandSEXP, SEXP renewable_availability_factorSEXP, SEXP Renewable_capacitySEXP, SEXP Curtailment_thresholdSEXP, SEXP storage_energy_level_startvalueSEXP, SEXP Efficiency_loadingSEXP, SEXP Efficiency_dischargingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,13 +18,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type storage_energy_level_startvalue(storage_energy_level_startvalueSEXP);
     Rcpp::traits::input_parameter< double >::type Efficiency_loading(Efficiency_loadingSEXP);
     Rcpp::traits::input_parameter< double >::type Efficiency_discharging(Efficiency_dischargingSEXP);
-    rcpp_result_gen = Rcpp::wrap(tool1_table(demand, renewable_availability_factor, Renewable_capacity, Curtailment_threshold, storage_energy_level_startvalue, Efficiency_loading, Efficiency_discharging));
+    rcpp_result_gen = Rcpp::wrap(tool1_table_cpp(demand, renewable_availability_factor, Renewable_capacity, Curtailment_threshold, storage_energy_level_startvalue, Efficiency_loading, Efficiency_discharging));
     return rcpp_result_gen;
 END_RCPP
 }
-// tool2_table
-DataFrame tool2_table(DoubleVector demand, DoubleVector renewable_availability_factor, double Renewable_capacity, double Curtailment_threshold, double storage_energy_level_startvalue, double Efficiency_loading, double Efficiency_discharging, double Storage_energy);
-RcppExport SEXP _REvola_tool2_table(SEXP demandSEXP, SEXP renewable_availability_factorSEXP, SEXP Renewable_capacitySEXP, SEXP Curtailment_thresholdSEXP, SEXP storage_energy_level_startvalueSEXP, SEXP Efficiency_loadingSEXP, SEXP Efficiency_dischargingSEXP, SEXP Storage_energySEXP) {
+// tool2_table_cpp
+DataFrame tool2_table_cpp(DoubleVector demand, DoubleVector renewable_availability_factor, double Renewable_capacity, double Curtailment_threshold, double storage_energy_level_startvalue, double Efficiency_loading, double Efficiency_discharging, double Storage_energy);
+RcppExport SEXP _REvola_tool2_table_cpp(SEXP demandSEXP, SEXP renewable_availability_factorSEXP, SEXP Renewable_capacitySEXP, SEXP Curtailment_thresholdSEXP, SEXP storage_energy_level_startvalueSEXP, SEXP Efficiency_loadingSEXP, SEXP Efficiency_dischargingSEXP, SEXP Storage_energySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,14 +36,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type Efficiency_loading(Efficiency_loadingSEXP);
     Rcpp::traits::input_parameter< double >::type Efficiency_discharging(Efficiency_dischargingSEXP);
     Rcpp::traits::input_parameter< double >::type Storage_energy(Storage_energySEXP);
-    rcpp_result_gen = Rcpp::wrap(tool2_table(demand, renewable_availability_factor, Renewable_capacity, Curtailment_threshold, storage_energy_level_startvalue, Efficiency_loading, Efficiency_discharging, Storage_energy));
+    rcpp_result_gen = Rcpp::wrap(tool2_table_cpp(demand, renewable_availability_factor, Renewable_capacity, Curtailment_threshold, storage_energy_level_startvalue, Efficiency_loading, Efficiency_discharging, Storage_energy));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_REvola_tool1_table", (DL_FUNC) &_REvola_tool1_table, 7},
-    {"_REvola_tool2_table", (DL_FUNC) &_REvola_tool2_table, 8},
+    {"_REvola_tool1_table_cpp", (DL_FUNC) &_REvola_tool1_table_cpp, 7},
+    {"_REvola_tool2_table_cpp", (DL_FUNC) &_REvola_tool2_table_cpp, 8},
     {NULL, NULL, 0}
 };
 

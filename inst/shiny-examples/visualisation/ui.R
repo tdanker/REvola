@@ -2,15 +2,15 @@ library(shiny)
 library(plotly)
 
 
-SIM=tool1_table(demand$`2014`, availability$`2014`)
+SIM=tool1_table("2014")
 
 shinyUI(fluidPage(
-  titlePanel("Explore Sinns Scenario!"),
+  titlePanel("Das macht Sinn!"),
   sidebarPanel(
 
-    sliderInput("store", "Size of Store:", min = 0, max = 50, step = 0.2, value = 30),
-    sliderInput("EE", "EE", min = 0.3, max = 2, value = 1),
-    sliderInput("store_out_frac", "store out frac", min = 0.1, max = 1, value = 1),
+    sliderInput("Renewable_capacity", "Renewable_capacity", min = 0, max = 500, step = 0.2, value = 200),
+    sliderInput("Curtailment_threshold", "Curtailment_threshold", min = 0, max = 20, value = 10),
+    sliderInput("Storage_energy", "Storage_energy", min = 0, max = 10000, value = 1000),
     sliderInput("xrange", "ZOOM", min = 0, max = NROW(SIM), value = c(0, NROW(SIM))),
     textOutput("BUFF"),
     actionButton("SC1", "SC1"),

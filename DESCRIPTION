@@ -10,7 +10,8 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp
-Imports: Rcpp
-Depends: shiny
+Imports: Rcpp, settings
+Depends: shiny, plotly, magrittr
 Suggests: 
     testthat
+RoxygenNote: 6.0.1
