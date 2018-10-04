@@ -1,7 +1,8 @@
-visualise_tool<-function(SIM){
+visualise_tool<-function(SIM, showvars=c("curtailment", "storage_loading")){
+  show_curt=TRUE
   opts<-pkg_options()
   plot_ly(SIM, x=~h, height=400, type = 'scatter', mode = 'lines', alpha=.5,
-          name="conv",
+          name="conventional generation",
           y=~conventional_generation,
           fill = 'tozeroy', fillcolor = opts$conventional.color, line=list(width=0, color=opts$conventional.color)) %>%
 
@@ -18,13 +19,15 @@ visualise_tool<-function(SIM){
     add_ribbons(name = 'storage loading',
                 ymin = ~conventional_generation+renewable_generation+storage_discharging,
                 ymax = ~conventional_generation+renewable_generation+storage_discharging+storage_loading,
-                fillcolor = opts$storage_loading.color, line=list(width=0)) %>%
+                fillcolor = opts$storage_loading.color, line=list(width=0),
+                visible="storage_loading" %in% showvars) %>%
 
 
     add_ribbons(name = 'curtailment',
                 ymin = ~conventional_generation+renewable_generation+storage_discharging+storage_loading,
                 ymax = ~conventional_generation+renewable_generation+storage_discharging+renewable_surplus,
-                fillcolor = opts$curtailment.color, line=list(width=0)) %>%
+                fillcolor = opts$curtailment.color, line=list(width=0),
+                visible="curtailment" %in% showvars) %>%
 
 
     add_lines(name = 'demand',
