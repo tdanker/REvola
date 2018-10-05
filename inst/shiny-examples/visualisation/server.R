@@ -21,8 +21,6 @@ shinyServer(function(input, output, session) {
 
     output$trendPlot <- renderPlotly({
 
-      SIM$h<-ymd(paste(input$year, 1, 1, "-"))+dhours(1:NROW(SIM))
-
       yhour<-function(x) (yday(x)-1)*24+hour(x)
       xrange=yhour(input$xrange[1]):yhour(input$xrange[2])
       p<-visualise_tool(SIM[xrange,], showvars = input$showvars)
@@ -37,7 +35,7 @@ shinyServer(function(input, output, session) {
       subplot(p,p2, shareX = TRUE, nrows=2, heights = c(.7,.3))
     })
     output$summaryPlot <- renderPlotly({
-      results <- dplyr::summarise_all(SIM, sum)/1000
+      results <- dplyr::summarise_all(SIM, sum)
       opts<-pkg_options()
       p1<-plot_ly(results) %>%
         add_trace(x ="energy mix",  y = ~100*conventional_generation/demand, type = 'bar', marker=list(color= opts$conventional.color), name = 'conventional_generation') %>%

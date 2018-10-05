@@ -17,6 +17,7 @@ DataFrame tool2_table_cpp(DoubleVector demand,
                       double Efficiency_discharging	= 0.926,
                       double Storage_energy=1000){
 
+  IntegerVector h(demand.size());
   DoubleVector renewable_availability(demand.size());
   DoubleVector renewable_surplus(demand.size());
   DoubleVector renewable_generation(demand.size());
@@ -30,6 +31,7 @@ DataFrame tool2_table_cpp(DoubleVector demand,
 
   storage_energy_level[0]=storage_energy_level_startvalue;
   for( int i = 0; i < demand.size(); i++) {
+    h[i]=i+1;
     renewable_availability[i] = renewable_availability_factor[i] * Renewable_capacity;
     renewable_generation[i]   = std::min(renewable_availability[i], demand[i]);
     renewable_surplus[i]      = renewable_availability[i]-renewable_generation[i];
@@ -46,7 +48,8 @@ DataFrame tool2_table_cpp(DoubleVector demand,
 
 
   // return a new data frame
-  return DataFrame::create(_["demand"]                        = demand,
+  return DataFrame::create(_["hour"]=h,
+                           _["demand"]                        = demand,
                            _["renewable_availability_factor"] = renewable_availability_factor,
                            _["renewable_availability"]        =  renewable_availability,
                            _["renewable_surplus"]             =  renewable_surplus,

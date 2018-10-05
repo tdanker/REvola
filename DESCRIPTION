@@ -1,6 +1,6 @@
 Package: REvola
 Type: Package
-Title: Renevable energy storage scenarios simulation and visualisiation
+Title: Visualisations of A.Zerrahns renewable energy storage scenarios
 Version: 0.1.0
 Author: Timm Danker
 Maintainer: The package maintainer <tidafr@carina.uberspace.de>
@@ -11,7 +11,7 @@ Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp
 Imports: Rcpp, settings
-Depends: shiny, plotly, magrittr
+Depends: shiny, plotly, magrittr, dplyr, lubridate
 Suggests:
     testthat
 RoxygenNote: 6.0.1
