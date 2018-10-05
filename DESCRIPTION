@@ -6,7 +6,7 @@ Author: Timm Danker
 Maintainer: The package maintainer <tidafr@carina.uberspace.de>
 Description: The package provides visualisations for the spreadsheet tools publishhed in the paper 
     "On the economics of electrical storage for variable renewable energy sources" by A.Zerrahn et al. 2018
-License: What license is it under?
+License: GPL
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp
