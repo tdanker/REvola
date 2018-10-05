@@ -12,5 +12,5 @@ You can explore it online here: https://patchexplorer.shinyapps.io/revola_deploy
 
 #### Technical background
 The original paper is based on 2 spreadsheet tools and a  numerical optimization model, all of which are open source and available online. 
-For our visualisations, we provide a fast re-implementation of both spreadsheet tools using Rcpp.
+To facilitate our visualisations, we provide a very fast R implementation of both spreadsheet tools based on Rcpp.
 The interacitve visualisation is done with the "shiny" package. 
